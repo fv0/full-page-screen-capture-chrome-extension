@@ -1,11 +1,11 @@
 {
-  "name": "Full Page Screen Capture",
+  "name": "Full-Page Screenshot",
   "version": "1.0.1",
   "manifest_version": 2,
-  "description": "Screen capture your current page in entirety and reliably!",
+  "description": "Take a full screenshot of the current website.",
   "browser_action": {
-    "default_icon": "icon-999.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Take full-page screenshot"
   },
   "commands": {
     "_execute_browser_action": {
@@ -16,8 +16,13 @@
   },
   "permissions": [ "activeTab" ],
   "icons": {
-    "16": "icon16-999.png",
-    "48": "icon48-999.png",
-    "128": "icon128-999.png"
-  }
+    "128": "icon-128.png",
+    "32": "icon-32.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "css": [ "styles.css" ]
+    }
+  ]
 }
