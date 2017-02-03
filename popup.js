@@ -28,11 +28,28 @@ function getFilename(contentURL) {
             .replace(/-+/g, '-')
             .replace(/^[_\-]+/, '')
             .replace(/[_\-]+$/, '');
-        name = '-' + name;
+        name = '__' + name;
     } else {
         name = '';
     }
-    return 'screencapture' + name + '-' + Date.now() + '.png';
+    // Adjust the date format
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = today.getMonth()+1; //January is 0!
+    var dd = today.getDate();
+
+    if(dd < 10) {
+        dd='0'+dd
+    } 
+
+    if(mm < 10) {
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+
+    // The full file name
+    return today + '-screenshot' + name + '.png';
 }
 
 
@@ -97,7 +114,8 @@ function progress(complete) {
         show('loading');
     }
     else {
-        $('bar').style.width = parseInt(complete * 100, 10) + '%';
+        // $('bar').style.width = ;
+        document.getElementById('progressCounter').innerHTML = parseInt(complete * 100, 10) + '%';
     }
 }
 
