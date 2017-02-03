@@ -1,0 +1,131 @@
+@import "animations";
+
+$duration-loader: 1.7s;
+
+$color-blue: #2196F3;
+$color-blue-dark: #1565C0;
+$color-gray: rgba(black, 0.5);
+$color-yellow-light: #FFECB3;
+$color-red: #F44336;
+$color-red-light: #FFCDD2;
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: block;
+    }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: $color-blue;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+        color: $color-blue-dark;
+    }
+}
+
+.container {
+    padding: 1rem;
+    position: relative;
+}
+
+#wrap {
+    width: 100%;
+    min-width: 15rem;
+}
+
+.wrap__icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.loader {
+    animation: rotation $duration-loader linear infinite;
+    width: 3rem;
+    height: auto;
+    stroke: $color-blue;
+}
+
+.circle {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: turn $duration-loader ease-in-out infinite;
+}
+
+.text__heading {
+    font-size: 0.75rem;
+    margin-top: 0;
+    margin-bottom: -0.5rem;
+    text-align: center;
+}
+
+.text__description {
+    color: $color-gray;
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.error,
+.warning {
+    box-shadow: inset 0 1px 0 rgba(black, 0.15);
+}
+
+.warning {
+    background-color: $color-yellow-light;
+}
+
+.error {
+    background-color: $color-red-light;
+
+    a {
+        color: $color-red;
+    }
+}
+
+#progressCounter {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    text-align: center;
+    color: $color-blue;
+}
+
+
+#wrap .warning, 
+#wrap .error {
+    display: none;
+}
+
+#wrap>#loading {
+    display: block;
+}
+
+p {
+    margin: 0;
+    word-wrap: break-word;
+}
