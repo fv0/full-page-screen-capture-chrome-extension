@@ -1,105 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset=utf-8>
-      <title>Full page screen catpure</title>
-      <!-- there are rendering bugs when styles aren't inline... -->
-      <style>
-body {
-    font: normal 12px/16px helvetica,aria,sans-serif;
-}
-div,p { margin: 0; padding: 0; }
-
-.clr { overflow: hidden; }
-.left { float: left; }
-.right { float: right; }
-
-a {
-	color: #3681b3;
-	text-decoration: none;
-}
-a:hover { color: #265c80; }
-a:active { color: #000; }
-
-#wrap {
-    width: 300px;
-    padding-top: 9px;
-    font-size: 12px;
-    color: #888;
-}
-
-#wrap>div { display: none; }
-#wrap>#loading { display: block; }
-
-#loading .loader {
-    position: relative;
-    border-top: 12px dotted #000;
-    height: 9px;
-}
-
-#loading .bar {
-    position: absolute;
-    top: -21px;
-    left: 0;
-    height: 30px;
-    width: 0%;
-    background: #fff url(loader.gif) scroll no-repeat center right;
-}
-p { word-wrap: break-word; }
-
-.warning {
-    margin-top: 1em;
-    color: #aa8d3b;
-    font-style: italic;
-    font-weight: bold;
-}
-.error {
-    margin-top: 1em;
-    font-weight: bold;
-    color: #b33;
-}
-.error a {
-    color: #f75;
-}
-      </style>
-  </head>
-  <body>
-      <div id="wrap">
-          <div id="loading">
-              <div class="loader"><div class="bar" id="bar"></div></div>
-              <div class="clr">
-                  <br>
-                  <p>
-                      Screen capture in progress, your finished image will open in a
-                      new window once completed. Please wait for the progress bar to
-                      finish.
-                  </p>
-              </div>
-          </div>
-          <div id="split-image" class="warning">
-              Note: your page is too large for the Chrome browser to capture as
-              one image. It will be split into <span id="screenshot-count">multiple</span>
-              images.
-          </div>
-          <div id="invalid" class="error">
-              Full Page Screen Capture cannot be run on this type of URL
-              because of Google Chrome Web Store policies. Try
-              another page on the web.
-          </div>
-          <div id="uh-oh" class="error">
-              Uh oh, something went wrong! Try reloading the page,
-              verifying javascript is enabled,
-              and running this again.
-              <br><br>
-              If the problem persists, please report the error in the
-              <a href="https://chrome.google.com/webstore/support/fdpohaocaechififmbbbbbknoalclacl?hl=en&gl=US#bug">Chrome webstore</a>.
-              Please include the URL you tried it on and the
-              version of Chrome.
-          </div>
-      </div>
-
-      <!-- JavaScript and HTML must be in separate files for security. -->
-      <script src="api.js"></script>
-      <script src="popup.js"></script>
-  </body>
+<head>
+    <meta charset="utf-8">
+    <title>Full-Page Screenshot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="wrap">
+        <div id="loading" class="container">
+            <div class="wrap__icon">
+                <svg class="loader" height="65px" viewbox="0 0 66 66" width="65px" xmlns="http://www.w3.org/2000/svg"><circle class="circle" cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="6"></circle></svg>
+                <span id="progressCounter"></span>
+            </div>
+            <div class="wrap__text">
+                <h1 class="text__heading">Capturing page…</h1>
+                <p class="text__description">Your screenshot will be opened in a new tab once finished.</p>
+            </div>
+        </div>
+        <div class="warning | container" id="split-image">
+            <div class="wrap__text">
+                <h1 class="text__heading">Multiple images</h1>
+                <p class="text__description">Your page is too large to capture as one image. It will be split into <span id="screenshot-count">multiple</span> images.</p>
+            </div>
+        </div>
+        <div class="error | container" id="invalid">
+        <h1 class="text__heading">Invalid URL</h1>
+            <p class="text__description">This extension can’t be run on this URL because of Chrome Web Store policies. Please try another page on the web.</p>
+        </div>
+        <div class="error | container" id="uh-oh">
+            <h1 class="text__heading">Uh oh, something went wrong!</h1>
+            <p class="text__description">Try reloading the page, verifying javascript is enabled, and running this again.</p>
+            <p class="text__description">If the problem persists, please report the error in the <a href="https://chrome.google.com/webstore/support/fdpohaocaechififmbbbbbknoalclacl?hl=en&gl=US#bug">Chrome webstore</a>. Please include the URL you tried it on and the version of Chrome.</p>
+        </div>
+    </div><!-- JavaScript and HTML must be in separate files for security. -->
+    <script src="api.js">
+    </script> 
+    <script src="popup.js">
+    </script>
+</body>
 </html>
